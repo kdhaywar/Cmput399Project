@@ -3,5 +3,6 @@
 
 close all;
 clear all;
+setup
 
 
