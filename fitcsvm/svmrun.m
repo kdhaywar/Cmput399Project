@@ -12,19 +12,20 @@ imgFileTrain = 'train-images.idx3-ubyte';
 labelFileTrain = 'train-labels.idx1-ubyte';
 imgFileTest = 't10k-images.idx3-ubyte';
 labelFileTest = 't10k-labels.idx1-ubyte';
-numTrain = 60;
+numTrain = 5000;
 numTest = 10000;
 offsetTrain = 0;
 offsetTest = 0;
+%%%%tested min .1 max .9 and min .4 max .6 and both did worse
 amin = 0; %min grayscale cutoff
-amax = 1; %max grayscale cutoff
-hogCellSz = 4;
+amax = 0; %max grayscale cutoff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+hogCellSz = 4; %tested with cellsize 1:10 plot image found in file
 
 [imgTrain, labelsTrain] = readMNIST(imgFileTrain, labelFileTrain, numTrain, offsetTrain);
 [imgTest, labelsTest] = readMNIST(imgFileTest, labelFileTest, numTest, offsetTest);
 imgTrain = mat2gray(imgTrain, [amin amax]);
 imgTest = mat2gray(imgTest, [amin amax]);
-
 
 cellSize = [hogCellSz hogCellSz];
 BlockSize = [2 2]; %default
