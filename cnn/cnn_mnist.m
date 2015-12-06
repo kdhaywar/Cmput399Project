@@ -1,4 +1,4 @@
-function [net, info] = cnn_mnist(varargin)
+function [net, info] = cnn_mnist(get_net, varargin)
 % CNN_MNIST  Demonstrated MatConNet on MNIST
 
 vl_setupnn;
@@ -31,7 +31,7 @@ else
   save(opts.imdbPath, '-struct', 'imdb') ;
 end
 
-net = cnn_mnist_init('useBnorm', opts.useBnorm) ;
+net = get_net('useBnorm', opts.useBnorm) ;
 
 % --------------------------------------------------------------------
 %                                                                Train

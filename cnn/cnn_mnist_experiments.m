@@ -1,9 +1,9 @@
 %Experiment with the cnn_mnist_fc_bnorm
-%[net_fc, info_fc] = cnn_mnist(@cnn_mnist_init_linear,'expDir', 'data/mnist-linear', 'useBnorm', false);
-[net_bn, info_bn] = cnn_mnist(@cnn_mnist_lenet,'expDir', 'data/mnist-lenet', 'useBnorm', false);
-%[net_fc, info_fc] = cnn_mnist(@cnn_mnist_init_test1,'expDir', 'data/mnist-test1', 'useBnorm', false);
-%[net_fc, info_fc] = cnn_mnist(@cnn_mnist_init_test2,'expDir', 'data/mnist-test2', 'useBnorm', false);
-%[net_fc, info_fc] = cnn_mnist(@cnn_mnist_init_test3,'expDir', 'data/mnist-test3', 'useBnorm', false);
+[net_lin, info_lin] = cnn_mnist(@cnn_mnist_init_linear,'expDir', 'data/mnist-linear', 'useBnorm', false);
+[net_lenet, info_lenet] = cnn_mnist(@cnn_mnist_lenet,'expDir', 'data/mnist-lenet', 'useBnorm', false);
+[net_1, info_1] = cnn_mnist(@cnn_mnist_init_test1,'expDir', 'data/mnist-test1', 'useBnorm', false);
+[net_2, info_2] = cnn_mnist(@cnn_mnist_init_test2,'expDir', 'data/mnist-test2', 'useBnorm', false);
+[net_3, info_3] = cnn_mnist(@cnn_mnist_init_test3,'expDir', 'data/mnist-test3', 'useBnorm', false);
 
 %Experiments Tests with data augmentations 
 %TODO

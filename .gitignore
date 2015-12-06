@@ -1,2 +1,4 @@
 /data
 *.asv
+/cnn/data
+/cnn/imdb.mat
