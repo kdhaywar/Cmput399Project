@@ -7,25 +7,11 @@
 
 %Experiments Tests with data augmentations 
 %TODO
+x = [1:20]
 
-
-% figure(1) ; clf ;
-% subplot(1,2,1) ;
-% semilogy(info_fc.val.objective, 'k') ; hold on ;
-% semilogy(info_bn.val.objective, 'b') ;
-% xlabel('Training samples [x10^3]'); ylabel('energy') ;
-% grid on ;
-% h=legend('BSLN', 'BNORM');
-% set(h,'color','none');
-% title('objective') ;
-% subplot(1,2,2) ;
-% plot(info_fc.val.error, 'k') ; hold on ;
-% %plot(info_fc.val.top5e, 'k--') ;
-% plot(info_bn.val.error, 'b') ;
-% %plot(info_bn.val.topFiveError, 'b--') ;
-% h=legend('BSLN-val','BSLN-val-5','BNORM-val','BNORM-val-5') ;
-% grid on ;
-% xlabel('Training samples [x10^3]'); ylabel('error') ;
-% set(h,'color','none') ;
-% title('error') ;
-% drawnow ;
+plot(x,info_lin.val.error(1,:),'g'); hold on;
+plot(x,info_lenet.val.error(1,:),'b');hold on;
+plot(x,info_1.val.error(1,:),'r');hold on;
+plot(x,info_2.val.error(1,:),'y');hold on;
+plot(x,info_3.val.error(1,:),'p');hold on;
+legend('Linear','LeNet','test1','test2','test3');
