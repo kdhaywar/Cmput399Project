@@ -12,7 +12,7 @@ imgFileTrain = 'train-images.idx3-ubyte';
 labelFileTrain = 'train-labels.idx1-ubyte';
 imgFileTest = 't10k-images.idx3-ubyte';
 labelFileTest = 't10k-labels.idx1-ubyte';
-numTrain = 5000;
+numTrain = 60000;
 numTest = 10000;
 offsetTrain = 0;
 offsetTest = 0;
@@ -21,6 +21,15 @@ amin = 0; %min grayscale cutoff
 amax = 0; %max grayscale cutoff
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 hogCellSz = 4; %tested with cellsize 1:10 plot image found in file
+
+%% feature ratio maybe fisher ratio? feature critia
+
+%%%cn vanishing gradient problem , the deeper the nodes the shallower the
+%%%gradient.
+
+
+%%%q4  affine 6
+%%%%q5 homo 4
 
 [imgTrain, labelsTrain] = readMNIST(imgFileTrain, labelFileTrain, numTrain, offsetTrain);
 [imgTest, labelsTest] = readMNIST(imgFileTest, labelFileTest, numTest, offsetTest);
@@ -58,8 +67,13 @@ for d = 0:9
     % trainingLabels indicate if the features are extracted from positive
     % (true) or negative (false) training images.
     trainGroundTruth = labelsTrain == d; 
-    svm{d+1} = fitcsvm(trainingFeatures,trainGroundTruth,'Standardize',true,'KernelFunction','RBF',...
-    'KernelScale','auto');
+    %svm{d+1} = fitcsvm(trainingFeatures,trainGroundTruth,'Standardize',true,'KernelFunction','RBF',...
+    %'KernelScale','auto');
+%     svm{d+1} = fitcsvm(trainingFeatures,trainGroundTruth,'Standardize',true,'KernelFunction','polynomial',...
+%     'KernelScale','auto'); %%%   1.2%
+
+    svm{d+1} = fitcsvm(trainingFeatures, trainGroundTruth,'Standard',true ...
+        ,'KernelFunction','polynomial','PolynomialOrder',7,'KernelScale','auto');
     %svm{d+1} = fitcsvm(trainingFeatures,trainGroundTruth);
     
 end
@@ -80,16 +94,27 @@ for i = 1:numImages
 end
 
 % Run all the SVM classifiers
-predictedLabels = zeros(numTest, numel(svm));
+predictedScore = zeros(numTest, numel(svm));
 for digit = 1:numel(svm)
-    predictedLabels(:,digit) = predict(svm{digit}, testFeatures);
+    [~, score ] = predict(svm{digit}, testFeatures);
+    predictedScore(:,digit) = score(:,2);
+end
+
+for i=1:numTrain
+    predictedLabels = double(bsxfun(@eq, predictedScore, max(predictedScore, [], 2)));
+
 end
 
 
-
-correct = sum(diag(predictedLabels(:,labelsTest(:)'+1)))/numTest;
-error = 1-correct;
+error = 0;
+for i = 1:numTest
+    if predictedLabels(i,labelsTest(i)+1) ~= 1;
+        error = error + 1;
+    end
+end
+error/numTest
 fprintf('Total error %d%%.\n',error*100);
+
 for i=1:size(svm,2)
     if not(svm{i}.ConvergenceInfo.Converged)
         fprintf('%d did not converge\n',i-1);
