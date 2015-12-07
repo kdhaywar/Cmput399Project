@@ -1,3 +1,4 @@
+%Retrieved from https://github.com/vlfeat/matconvnet/tree/master/examples on Nov 20 2015
 function [net, info] = cnn_mnist(get_net, varargin)
 % CNN_MNIST  Demonstrated MatConNet on MNIST
 
@@ -9,7 +10,7 @@ opts.expDir = fullfile('data','mnist-baseline') ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
 
 opts.dataDir = fullfile('../data') ;
-opts.imdbPath = fullfile(opts.expDir, 'imdb.mat');
+opts.imdbPath = fullfile(opts.expDir, 'imdbExtended.mat');
 opts.useBnorm = false ;
 opts.train.batchSize = 100 ;
 opts.train.numEpochs = 20 ;

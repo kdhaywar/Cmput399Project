@@ -1,5 +1,9 @@
-function net = cnn_mnist_init(varargin)
+%Based off cnn_mnist_init from https://github.com/vlfeat/matconvnet/tree/master/examples
+%on Nov 20 2015
+function net = cnn_mnist_init_lenet(varargin)
 % CNN_MNIST_LENET Initialize a CNN similar for MNIST
+%INPUT -> [CONV -> POOL -> CONV -> POOL]*1 -> FC -> RELU -> FC
+%->SOFTMAXLOSS
 opts.useBnorm = true ;
 opts = vl_argparse(opts, varargin) ;
 

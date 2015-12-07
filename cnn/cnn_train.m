@@ -1,3 +1,5 @@
+%Retrieved from https://github.com/vlfeat/matconvnet/tree/master/examples
+%on Nov 20 2015
 function [net, info] = cnn_train(net, imdb, getBatch, varargin)
 %CNN_TRAIN  An example implementation of SGD for training CNNs
 %    CNN_TRAIN() is an example learner implementing stochastic

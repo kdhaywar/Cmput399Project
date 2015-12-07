@@ -1,6 +1,7 @@
-function net = cnn_mnist_init(varargin)
-% Made up CNN
-%INPUT -> [CONV -> RELU -> CONV -> RELU -> POOL]*1 -> [FC -> RELU]*1 -> FC 
+%Based off cnn_mnist_init from https://github.com/vlfeat/matconvnet/tree/master/examples
+%on Nov 20 2015
+function net = cnn_mnist_init_test1(varargin)
+%INPUT -> [CONV -> RELU -> CONV -> RELU -> POOL]*1 -> FC -> RELU -> FC 
 opts.useBnorm = true ;
 opts = vl_argparse(opts, varargin) ;
 
@@ -36,7 +37,6 @@ net.layers{end+1} = struct('type', 'conv', ...
                            'weights', {{f*randn(1,1,500,10, 'single'), zeros(1,10,'single')}}, ...
                            'stride', 1, ...
                            'pad', 0) ;
-%net.layers{end+1} = struct('type', 'relu') ;  
 
 net.layers{end+1} = struct('type', 'softmaxloss') ;
 

@@ -1,5 +1,6 @@
-function net = cnn_mnist_init(varargin)
-% Based off of VGG , but had to reduce to save memory
+%Based off cnn_mnist_init from https://github.com/vlfeat/matconvnet/tree/master/examples
+%on Nov 20 2015
+function net = cnn_mnist_init_test3(varargin)
 %INPUT -> [CONV -> RELU -> POOL]*2 -> FC -> RELU -> FC
 opts.useBnorm = true ;
 opts = vl_argparse(opts, varargin) ;

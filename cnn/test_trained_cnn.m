@@ -19,4 +19,3 @@ for i = 1:n
     %pause;
 end
 
-% Visualize the results
