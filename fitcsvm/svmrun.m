@@ -112,7 +112,7 @@ for i = 1:numTest
         error = error + 1;
     end
 end
-error/numTest
+ error = error/numTest;
 fprintf('Total error %d%%.\n',error*100);
 
 for i=1:size(svm,2)
