@@ -11,5 +11,5 @@ x = [1:20]
 plot(x,info_lenet.val.error(1,:),'b--x');hold on;
 plot(x,info_1.val.error(1,:),'r--o');hold on;
 plot(x,info_2.val.error(1,:),'k--*');hold on;
-plot(x,info_3.val.error(1,:),'m--+');hold on;
+plot(x,info_4.val.error(1,:),'m--+');hold on;
 legend('LeNet','test1','test2','test3');
